@@ -12,6 +12,13 @@ public class AnalogClock : MonoBehaviour
     public bool smoothMovement = false;
     public float smoothSpeed = 5f;
 
+    public enum RotationAxis { X, Y, Z }
+    [Header("Rotation Axis")]
+    public RotationAxis rotationAxis = RotationAxis.Z; // Default to Z
+
+    [Header("Rotation Direction")]
+    public bool invertRotation = false; // Toggle this if the clock goes anti-clockwise
+
     private void Update()
     {
         // Get current system time
@@ -32,15 +39,27 @@ public class AnalogClock : MonoBehaviour
         else
         {
             // Direct rotation
-            hourHand.localRotation = Quaternion.Euler(0f, 0f, hourAngle);
-            minuteHand.localRotation = Quaternion.Euler(0f, 0f, minuteAngle);
-            secondHand.localRotation = Quaternion.Euler(0f, 0f, secondAngle);
+            hourHand.localRotation = GetRotation(hourAngle);
+            minuteHand.localRotation = GetRotation(minuteAngle);
+            secondHand.localRotation = GetRotation(secondAngle);
+        }
+    }
+
+    private Quaternion GetRotation(float angle)
+    {
+        if (invertRotation) angle = -angle;
+
+        switch (rotationAxis)
+        {
+            case RotationAxis.X: return Quaternion.Euler(angle, 0f, 0f);
+            case RotationAxis.Y: return Quaternion.Euler(0f, angle, 0f);
+            case RotationAxis.Z: default: return Quaternion.Euler(0f, 0f, angle);
         }
     }
 
     private void RotateHandSmoothly(Transform hand, float targetAngle)
     {
-        Quaternion targetRotation = Quaternion.Euler(0f, 0f, targetAngle);
+        Quaternion targetRotation = GetRotation(targetAngle);
         hand.localRotation = Quaternion.Slerp(hand.localRotation, targetRotation, smoothSpeed * Time.deltaTime);
     }
 }
