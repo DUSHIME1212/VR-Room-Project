@@ -1,50 +1,80 @@
-# VR Room Project
+# 🥽 VR Room Project
 
-This is a Unity VR project designed as an interactive VR environment. It utilizes Unity's **XR Interaction Toolkit** to provide VR interactions such as grabbing objects, teleporting, and interacting with UI elements.
+Welcome to the **VR Room Project**, an interactive virtual reality environment built with Unity. This project serves as a sandbox for exploring VR interaction design, featuring high-quality scripts and modular components.
 
-This project appears to be based on the **"Create by Unity"** VR course modules, featuring a central room environment with potentially several "challenge" areas.
+---
+
+## ✨ Key Features
+
+### 🔦 Interactive Flashlight
+
+A custom-built flashlight system designed for immersive VR gameplay.
+
+- **Dynamic Lighting**: Real-time spotlight toggling.
+- **Visual Feedback**: The flashlight lens features emission mapping that turns on/off with the light.
+- **Sound Effects**: satisfying click sounds for a tactile feel.
+- **XR Ready**: Optimized for use with the `XRGrabInteractable` component.
+
+### 🕰️ Analog Clock System
+
+A precise, real-time analog clock that syncs with your system time.
+
+- **Smooth Seconds**: Optional smooth rotation for a premium look.
+- **Configurable Axis**: Supports any orientation (X, Y, or Z).
+- **Inversion Logic**: Easy toggle for clockwise/anti-clockwise rotation.
+
+### 🏗️ Explorable Environments
+
+- **Architecture Room**: Explore high-fidelity architectural visualizations.
+- **3D Painting**: Get creative with immersive tools.
+- **Training Grounds**: Master VR locomotive and interaction mechanics.
+
+---
 
 ## 📂 Project Structure
 
-- **Scene**: `Assets/Scenes/VR Room.unity` - The main entry point for the experience.
-- **Challenges**:
-  - `01_Architecture`: Mini-project focused on architectural visualization or interaction.
-  - `02_3DPainting`: Mini-project likely involving creative tools or 3D painting mechanics.
-  - `03_Training`: Training area for VR mechanics.
-- **\_Course Library**: Contains reusable scripts and prefabs from the course curriculum used to drive interactions (e.g., `ApplyPhysics`, `ChangeMaterial`, `PlaySound`).
+- **`Assets/Scenes/VR Room.unity`**: The main entry point.
+- **`Assets/_Course Library/Scripts/Actions`**: Home to core logic like `Flashlight.cs`, `AnalogClock.cs`, and `PlayVideo.cs`.
+- **`Assets/_Course Library/_Prefabs`**: Pre-configured VR objects ready for placement.
+
+---
 
 ## 🛠️ Technology Stack
 
-- **Unity Version**: `6000.3.5f2`
-- **XR Interaction Toolkit**: Version `3.0.8` (approx.)
-- **Platform**: Designed for VR headsets (can be tested using XR Device Simulator).
+- **Engine**: Unity `6000.3.5f2`
+- **Frontend**: XR Interaction Toolkit `3.0.x`
+- **Render Pipeline**: Universal Render Pipeline (URP)
+- **Input**: OpenXR with XR Device Simulator support.
+
+---
 
 ## 🚀 Getting Started
 
-1.  **Open Project**:
-    - Open Unity Hub.
-    - Add this project folder.
-    - Ensure you are using Unity `6000.3.5f2` or a compatible version.
+1.  **Open Project**: Load the folder in Unity Hub (Unity `6000.3.x` recommended).
+2.  **Open Scene**: Go to `Assets > Scenes > VR Room.unity`.
+3.  **Play**: Hit the **Play** button and use the **XR Device Simulator** to move and interact.
 
-2.  **Open Scene**:
-    - Navigate to `Assets > Scenes`.
-    - Double-click `VR Room.unity` to open the main scene.
+### 💡 Adding the Flashlight to a New Object
 
-3.  **Run in Editor**:
-    - Press the **Play** button.
-    - Use the **XR Device Simulator** (if enabled) to simulate headset and controller movement with mouse and keyboard.
+1. Create a 3D object (e.g., a Cylinder) or use a prefab.
+2. Add the `Flashlight` script.
+3. Assign a `Light` child object to the **Flashlight Light** field.
+4. Assign the object's `MeshRenderer` to **Lens Renderer**.
+5. Map **Toggle On/Off** sounds to the audio fields.
+6. (Optional) Add an `XRGrabInteractable` and link `Flashlight.Toggle()` to the **Activated** event.
 
-4.  **Build & Run**: (Optional)
-    - Go to `File > Build Settings`.
-    - Select your target platform (Android for Quest, Windows/Mac for PCVR).
-    - ensure **XR Plug-in Management** is set up for your device (Project Settings > XR Plug-in Management).
-    - Click **Build And Run** to deploy to your connected headset.
+---
 
 ## 🎮 Controls
 
-Standard XR Interaction Toolkit controls apply:
+| Action        | Left Controller | Right Controller |
+| :------------ | :-------------- | :--------------- |
+| **Move**      | Joystick        | -                |
+| **Turn**      | -               | Joystick         |
+| **Grab Item** | Grip            | Grip             |
+| **Use Item**  | Trigger         | Trigger          |
+| **Teleport**  | Ray Cast        | -                |
 
-- **Move**: Joystick (Left controller) or Teleport Ray.
-- **Turn**: Joystick (Right controller).
-- **Grab/Interact**: Grip button.
-- **Select/UI**: Trigger button.
+---
+
+_Happy Coding and Exploring!_ 🚀
