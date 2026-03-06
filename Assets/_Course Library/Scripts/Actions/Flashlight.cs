@@ -49,6 +49,7 @@ public class Flashlight : MonoBehaviour
     {
         isOn = !isOn;
         UpdateFlashlightState(true);
+        Debug.Log("Flashlight toggled: " + isOn);
     }
 
     public void TurnOn()
